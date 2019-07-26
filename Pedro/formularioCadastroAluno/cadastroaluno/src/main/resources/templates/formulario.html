@@ -1,0 +1,193 @@
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="layout">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <style>
+        .container{
+            border: 1px solid black;
+        }
+        form{
+            border: 1px solid black;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function valida(){
+            var nome = document.getElementById("nome");
+            var msg_nome = document.querySelector(".msg-nome");
+            var msg_nome_invalido = document.querySelector(".msg-nome-invalido");
+            if (nome.value == "") {
+                msg_nome.style.display = "block";
+                msg_nome_invalido.style.display = "none";
+            } else {
+                if(nome.value.length < 4){
+                    msg_nome_invalido.style.display = "block";
+                } else{
+                    msg_nome.style.display = "none";
+                }
+            }
+            var email = document.getElementById("email");
+            var msg_email = document.querySelector(".msg-email");
+            var msg_email_invalido = document.querySelector(".msg-email-invalido");
+            
+            
+            if(email.value == "" || email.value.length < 4){
+                msg_email.style.display = "block";
+                msg_email_invalido.style.display = "none";           
+            } else {                
+                if(email.value.indexOf('@') == -1 || email.value.indexOf('.') == -1){
+                    msg_email_invalido.style.display = "block";
+                } else{
+                    msg_email.style.display = "none";
+                }
+            }
+            var cpf = document.getElementById("cpf");
+            var msg_cpf = document.querySelector(".msg-cpf");
+            var msg_cpf_invalido = document.querySelector(".msg-cpf-invalido");
+            if(cpf.value == "" || cpf.value.length < 4) {
+                msg_cpf.style.display = "block";
+                msg_cpf_invalido.style.display = "none";
+            } else {
+                if(cpf.value.length < 11){
+                    msg_cpf_invalido.style.display = "block";
+                    msg_cpf.style.display = "none";
+                } else{
+                    msg_cpf.style.display = "none";
+                }
+            }
+            var senha1 = document.getElementById("senha1");
+            var senha2 = document.getElementById("senha2");
+            var msg_senha_invalida = document.querySelector(".msg-senha");
+            var msg_senha_invalida2 = document.querySelector(".msg-senha2");
+            if(senha1.value == "" && senha2.value == ""){
+                msg_senha_invalida.style.display = "block";
+                msg_senha_invalida2.style.display = "block";
+            }else{
+                if(senha1.value == senha2.value){
+                    console.log("senha correta");
+                }else{
+                    console.log("senha errada");
+                }
+            }
+
+            
+            var checkbox = document.getElementsByName("areaDeAtuacao");
+            var msg_checkbox_invalida = document.querySelector(".msg-checkbox");
+            var camposPreenchidos = 0;
+            
+            for(i = 0; i < checkbox.length; i++){
+                if(checkbox[i].checked){
+                    camposPreenchidos++;
+                }
+            }
+            if(camposPreenchidos >= 1){
+                msg_checkbox_invalida.style.display = "none";
+            }
+            else{
+                msg_checkbox_invalida.style.display = "block"
+            }
+        }
+            
+    </script>
+    </head>
+    <body class="bg bg-secondary">
+        <div class="container">
+            <h1 style="text-align: center">Formulario</h1>
+                <form method="POST" action="aluno_cadastrado">
+                    <div class="form-group">
+                        <label for="nome">Nome *</label>
+                        <input type="nome" class="form-control" id="nome" name="nome" aria-describedby="nomeHelp" placeholder="Insira nome">
+                        <span class="msg-erro msg-nome" style="display: none">O campo é obritatório</span>
+                        <span class="msg-erro msg-nome-invalido" style="display: none">O nome é invalido</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="you@name.com">
+                        <span class="msg-erro msg-email" style="display: none">O campo é obritatório</span>
+                        <span class="msg-erro msg-email-invalido" style="display: none">O tipo de email invalido</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cpf">CPF *</label>
+                        <input type="cpf" class="form-control" id="cpf" name="cpf" aria-describedby="emailHelp" placeholder="Insira seu cpf">
+                        <span class="msg-erro msg-cpf" style="display: none">O campo é obritatório</span>
+                        <span class="msg-erro msg-cpf-invalido" style="display: none">O tipo de CPF não é valido</span>
+                    </div>
+                    
+                    <div class="form-group">
+                            <label for="Sexo">Sexo *</label>
+                            <select class="form-control" id="sexo" name="sexo">
+                            <option>Masculino</option>
+                            <option>Feminino</option>
+                            <option>Outro</option>
+                            </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="modulo">Modulo *</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="modulo" value="primeiro" checked>
+                                <label class="form-check-label" for="Primeiro">
+                                    Primeiro
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="modulo" value="segundo">
+                                <label class="form-check-label" for="Segundo">
+                                    Segundo
+                                </label>
+                            </div>
+                            <div class="form-check disabled">
+                                <input class="form-check-input" type="radio" name="modulo" value="terceiro">
+                                <label class="form-check-label" for="Terceiro">
+                                    Terceiro
+                                </label>
+                            </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="areasDeAtuacao">Áreas de Atuação Preferidas *</label>
+                            <div class="form-check">
+                                <label class="form-check-label" for="check1">
+                                <input type="checkbox" class="form-check-input" id="check1" name="areaDeAtuacao" value="Programação" checked>Programação
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label" for="check2">
+                                <input type="checkbox" class="form-check-input" id="check2" name="areaDeAtuacao" value="Redes de Computadores">Redes de Computadores
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label" for="check3">
+                                <input type="checkbox" class="form-check-input" id="check3" name="areaDeAtuacao" value="Manutenção de Computadores">Manutenção de Computadores
+                                </label>
+                            </div>
+                            <span class="msg-erro msg-checkbox" style="display: none">Campo é obrigatório</span>      
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="senha">Senha *</label>
+                        <input type="password" class="form-control" id="senha1" name="senha1" placeholder="Insira senha" required>
+                        <span class="msg-erro msg-senha" style="display: none">O campo é obritatório</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="senha">Senha *</label>
+                        <input type="password" class="form-control" id="senha2" name="senha" placeholder="Insira senha novamente" required>
+                        <span class="msg-erro msg-senha2" style="display: none">O campo é obritatório</span>
+                    </div>
+                
+                    <button type="submit" class="btn btn-primary mb-2" onclick="valida()">Enviar</button>
+                    <button type="reset" class="btn btn-primary mb-2">Reset</button>
+
+                    <p th:text="${mensagem}"></p>
+            </form>
+        </div>
+    </body>
+</html>
