@@ -3,143 +3,146 @@
 <html lang="en">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v3.8.5">
-    <title>Cadastro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Jekyll v3.8.5">
+  <title>Cadastro</title>
 
 
-    <style>
-        .campo {
-          margin: 10px;
-          padding: 0px;
-        }
-    
-        fieldset {
-          border: 0;
-    
-        }
-    
-        body {
-          font-family: sans-serif;
-          font-size: 1em;
-        }
-    
-        input,
-        select,
-        textarea,
-        button {
-          font-family: sans-serif;
-          font-size: 1em;
-        }
-    
-        .grupo:before,
-        .grupo:after {
-          content: " ";
-          display: table;
-        }
-    
-        .grupo:after {
-          clear: both;
-        }
-    
-        .campo {
-          margin-bottom: 1em;
-        }
-    
-        .campo label {
-          margin-bottom: 0.2em;
-          color: #666;
-          display: block;
-        }
-    
-        fieldset.grupo .campo {
-          float: left;
-          margin-right: 1em;
-        }
-    
-        .campo input[type="text"],
-        .campo input[type="email"],
-        .campo input[type="url"],
-        .campo input[type="tel"],
-        .campo select,
-        .campo textarea {
-          padding: 0.2em;
-          border: 1px solid #CCC;
-          box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
-          display: block;
-        }
-    
-        .campo select option {
-          padding-right: 1em;
-        }
-    
-        .campo input:focus,
-        .campo select:focus,
-        .campo textarea:focus {
-          background: #FFC;
-        }
-    
-        .campo label.checkbox {
-          color: #000;
-          display: inline-block;
-          margin-right: 1em;
-        }
-    
-        .botao {
-          font-size: 1.5em;
-          background: #F90;
-          border: 0;
-          margin-bottom: 1em;
-          color: #FFF;
-          padding: 0.2em 0.6em;
-          box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
-          text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
-        }
-    
-        .botao:hover {
-          background: #FB0;
-          box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.2);
-          text-shadow: none;
-        }
-    
-        .botao,
-        select,
-        label.checkbox {
-          cursor: pointer;
-        }
-      </style>
+  <style>
+    .campo {
+      margin: 10px;
+      padding: 0px;
+    }
+
+    fieldset {
+      border: 0;
+
+    }
+
+    body {
+      font-family: sans-serif;
+      font-size: 1em;
+    }
+
+    input,
+    select,
+    textarea,
+    button {
+      font-family: sans-serif;
+      font-size: 1em;
+    }
+
+    .grupo:before,
+    .grupo:after {
+      content: " ";
+      display: table;
+    }
+
+    .grupo:after {
+      clear: both;
+    }
+
+    .campo {
+      margin-bottom: 1em;
+    }
+
+    .campo label {
+      margin-bottom: 0.2em;
+      color: #666;
+      display: block;
+    }
+
+    fieldset.grupo .campo {
+      float: left;
+      margin-right: 1em;
+    }
+
+    .campo input[type="text"],
+    .campo input[type="email"],
+    .campo input[type="url"],
+    .campo input[type="tel"],
+    .campo select,
+    .campo textarea {
+      padding: 0.2em;
+      border: 1px solid #CCC;
+      box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+      display: block;
+    }
+
+    .campo select option {
+      padding-right: 1em;
+    }
+
+    .campo input:focus,
+    .campo select:focus,
+    .campo textarea:focus {
+      background: #FFC;
+    }
+
+    .campo label.checkbox {
+      color: #000;
+      display: inline-block;
+      margin-right: 1em;
+    }
+
+    .botao {
+      font-size: 1.5em;
+      background: #F90;
+      border: 0;
+      margin-bottom: 1em;
+      color: #FFF;
+      padding: 0.2em 0.6em;
+      box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+    }
+
+    .botao:hover {
+      background: #FB0;
+      box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.2);
+      text-shadow: none;
+    }
+
+    .botao,
+    select,
+    label.checkbox {
+      cursor: pointer;
+    }
+  </style>
 
 </head>
 
 <body class="bg-light">
-    
-     CADASTRO DE ALUNO
-  <form action="/cadastro" method="post" name="frm" id="form" onSubmit="return validaForm(this);" >
+
+  CADASTRO DE ALUNO
+  <form action="/index" method="post" name="frm" id="form" onsubmit="return validarCampos()">
     <div class="Principal">
       <fieldset>
         <fieldset class="campo">
           <div class="cnome">
             <label for="nome">Nome</label>
-            <input type="text" id="nome"  name="nome" style="width: 10em" value="">
+            <input type="text" id="nome" name="nome" style="width: 10em" required onkeyup="validarNome()">
           </div>
-
+          <label id="erroNome"></label>
         </fieldset>
 
         <div class="campo">
           <label for="email">E-mail</label>
-          <input type="text" id="email"  name="email" style="width: 20em" value="">
+          <input type="text" id="email" name="email" style="width: 20em" required onkeyup="validarEmail()">
         </div>
-          <div class="campo">
-            <label for="password" name="NovaSenha">SENHA </label>
-            <input type="password" size="10" maxlength="6" value="">
-            <label for="confirm_password" name="CNovaSenha">REPETIR SENHA </label>
-            <input type="password" size="10" maxlength="6" value="">
-  
-          </div>
+        <label id="erroEmail"></label>
+        <div class="campo">
+          <label for="password" name="NovaSenha">SENHA </label>
+          <input type="password" name="password" size="10" required id="senha" onkeyup="validarSenha()">
+          <label id="erroSenha"></label>
+          <label for="confirm_password" name="CNovaSenha">REPETIR SENHA </label>
+          <input type="password" size="10" id="repetirSenha" required onkeyup="validarRepetirSenha()">
+          <label id="erroRepetirSenha"></label>
+
+        </div>
         <fieldset class="grupo">
 
           <div class="campo">
@@ -151,14 +154,18 @@
 
             </select>
             <br>
-            <label for="areas" name="areas">PREFERENCIAS: <br>
-            <input type="checkbox" name="areas" value="PROGRAMAÇÃO WEB" /> REDES DE COMPUTADORES<br />
-            <input type="checkbox" value="MANUTENÇÃO DE COMPUTADORE" name="areas" /> PROGRAMAÇÃO<br />
-            <input type="checkbox" value=" REDES DE COMPUTADORES" name="areas" /> MONTAGEM E MANUTENÇÃO<br />
-          </label>
+            <label>PREFERENCIAS: <br></label>
+            <input type="checkbox" id="RedesDeComputadores" value="PROGRAMAÇÃO WEB" onclick="validarPreferencia()" />
+            REDES DE COMPUTADORES<br />
+            <input type="checkbox" id="Programacao" value="MANUTENÇÃO DE COMPUTADORE" onclick="validarPreferencia()" />
+            PROGRAMAÇÃO<br />
+            <input type="checkbox" id="MontagemEManutencao" value=" REDES DE COMPUTADORES"
+              onclick="validarPreferencia()" /> MONTAGEM E MANUTENÇÃO<br />
+
+            <label id="erroNaPreferencia"></label>
           </div>
         </fieldset>
-       
+
         <input name="Submit" type="submit" class="formobjects" value="Salvar">
 
         <input name="Reset" type="reset" class="formobjects" value="Limpar">
@@ -167,10 +174,85 @@
   </form>
   <p th:text="${mensagem}"></p>
 
-    <script>
+  <script>
+    function validarNome() {
+      var nome = document.getElementById("nome");
+      var erroNome = document.getElementById("erroNome");
 
-           
-    </script>
+      if (nome.value.length < 3) {
+        erroNome.innerHTML = "esse nome nao e valido";
+        return false;
+      }
+      else {
+        erroNome.innerHTML = "";
+        return true;
+      }
+    }
+
+    function validarEmail() {
+      var email = document.getElementById("email");
+      var erroEmail = document.getElementById("erroEmail");
+
+      if (form.email.value.indexOf("@") == -1 || form.email.value.indexOf(".") == -1) {
+        erroEmail.innerHTML = "esse email nao e valido"
+        return false;
+      }
+      else {
+        erroEmail.innerHTML = "";
+        return true;
+      }
+
+
+    }
+
+    function validarSenha() {
+      var senha = document.getElementById("senha");
+      var erroSenha = document.getElementById("erroSenha");
+
+      if (senha.value.length <= 6) {
+        erroSenha.innerHTML = "essa senha nao e valida";
+        return false;
+      } else {
+        erroSenha.innerHTML = "";
+        return true;
+      }
+    }
+
+    function validarRepetirSenha() {
+      var RepetirSenha = document.getElementById("repetirSenha");
+      var erroRepetirSenha = document.getElementById("erroRepetirSenha");
+      var senha = document.getElementById("senha");
+
+      if (RepetirSenha.value != senha.value) {
+        erroRepetirSenha.innerHTML = "essa senha e diferente da outra";
+        return false;
+      } else {
+        erroRepetirSenha.innerHTML = "";
+        return true;
+      }
+    }
+
+    function validarPreferencia() {
+      var RedesDeComputadores = document.getElementById("RedesDeComputadores");
+      var Programacao = document.getElementById("Programacao");
+      var MontagemEManutencao = document.getElementById("MontagemEManutencao");
+      var erroNaPreferencia = document.getElementById("erroNaPreferencia");
+      if (RedesDeComputadores.checked || Programacao.checked || MontagemEManutencao.checked) {
+        erroNaPreferencia.innerHTML = "";
+        return true;
+      } else {
+        erroNaPreferencia.innerHTML = "selecione a sua preferencia"
+        return false;
+      }
+    }
+    function validarCampos() {
+      if (validarNome() && validarEmail() && validarSenha() && validarRepetirSenha() && validarCampos() && validarPreferencia()) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  </script>
 </body>
 
 </html>

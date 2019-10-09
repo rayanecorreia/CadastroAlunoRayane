@@ -7,8 +7,12 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 public class Controlador{
 
-    @RequestMapping
-    public ModelAndView index(){
+    @RequestMapping("/")
+    public ModelAndView form(){
         return new ModelAndView("Formulario.html");
+    }
+    @RequestMapping("/index")
+    public ModelAndView index(){
+        return new ModelAndView("index.html");
     }
 }
