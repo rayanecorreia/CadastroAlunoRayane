@@ -42,6 +42,8 @@
       display: table;
     }
 
+    border: 0;
+
     .grupo:after {
       clear: both;
     }
@@ -135,10 +137,10 @@
         </div>
         <label id="erroEmail"></label>
         <div class="campo">
-          <label for="password" name="NovaSenha">SENHA </label>
-          <input type="password" name="password" size="10" required id="senha" onkeyup="validarSenha()">
+          <label for="password" name="senha">SENHA </label>
+          <input type="password" name="password" size="10"  id="senha" onclick="validarSenha()">
           <label id="erroSenha"></label>
-          <label for="confirm_password" name="CNovaSenha">REPETIR SENHA </label>
+          <label for="confirm_password" >REPETIR SENHA </label>
           <input type="password" size="10" id="repetirSenha" required onkeyup="validarRepetirSenha()">
           <label id="erroRepetirSenha"></label>
 
@@ -147,12 +149,16 @@
 
           <div class="campo">
             <label for="modulo">MODULO</label>
-            <select name="modulo" id="modulo1">
-              <option value="primeiro">PRIMEIRO</option>
-              <option value="segundo">SEGUNDO</option>
-              <option value="terceiro">TERCEIRO</option>
+            <select>
+             
+              <option> PRIMEIRO</option>
+              
+              <option>SEGUNDO</option>
+
+              <option>TERCEIRO</option>
 
             </select>
+            
             <br>
             <label>PREFERENCIAS: <br></label>
             <input type="checkbox" id="RedesDeComputadores" value="PROGRAMAÇÃO WEB" onclick="validarPreferencia()" />
@@ -166,7 +172,7 @@
           </div>
         </fieldset>
 
-        <input name="Submit" type="submit" class="formobjects" value="Salvar">
+        <input name="Submit" type="submit" class="formobjects" value="Salvar" onclick="validarCampos()">
 
         <input name="Reset" type="reset" class="formobjects" value="Limpar">
       </fieldset>
@@ -175,61 +181,50 @@
   <p th:text="${mensagem}"></p>
 
   <script>
+
     function validarNome() {
       var nome = document.getElementById("nome");
-      var erroNome = document.getElementById("erroNome");
-
-      if (nome.value.length < 3) {
-        erroNome.innerHTML = "esse nome nao e valido";
+      if (nome.value == "") {
+        alert("campo do nome obrigatorio");
         return false;
-      }
-      else {
-        erroNome.innerHTML = "";
-        return true;
       }
     }
 
     function validarEmail() {
-      var email = document.getElementById("email");
-      var erroEmail = document.getElementById("erroEmail");
-
-      if (form.email.value.indexOf("@") == -1 || form.email.value.indexOf(".") == -1) {
-        erroEmail.innerHTML = "esse email nao e valido"
+      var Email = document.getById("email")
+      if (Email.value == "") {
+        alert("campo de email obrigatorio");
         return false;
       }
-      else {
-        erroEmail.innerHTML = "";
-        return true;
+       else if (Email.value.indexOf("@") == -1) {
+        alert("email incorreto");
+      }
+      else if (Email.value.indexOf(".") == -1) {
+        alert("email incorreto");
       }
 
 
     }
+    
 
     function validarSenha() {
-      var senha = document.getElementById("senha");
-      var erroSenha = document.getElementById("erroSenha");
+      var senha = document.getElementById("Senha");
+      var confirma = document.getElementById("RepetirSenha");
 
-      if (senha.value.length <= 6) {
-        erroSenha.innerHTML = "essa senha nao e valida";
+      if (senha.value == "") {
+        alert("campo de senha obrigatorio");
         return false;
-      } else {
-        erroSenha.innerHTML = "";
-        return true;
       }
-    }
-
-    function validarRepetirSenha() {
-      var RepetirSenha = document.getElementById("repetirSenha");
-      var erroRepetirSenha = document.getElementById("erroRepetirSenha");
-      var senha = document.getElementById("senha");
-
-      if (RepetirSenha.value != senha.value) {
-        erroRepetirSenha.innerHTML = "essa senha e diferente da outra";
+      else if (senha.value.length < 6) {
+        alert("A senha deve conter no minímo 6 digitos!");
         return false;
-      } else {
-        erroRepetirSenha.innerHTML = "";
-        return true;
       }
+
+      else if (senha.value!= confirma.value) {
+        alert("senhas diferentes");
+        return false;
+      }
+
     }
 
     function validarPreferencia() {
@@ -246,7 +241,7 @@
       }
     }
     function validarCampos() {
-      if (validarNome() && validarEmail() && validarSenha() && validarRepetirSenha() && validarCampos() && validarPreferencia()) {
+      if (validarNome() && validarEmail() && validarSenha() && validarCampos() && validarPreferencia()) {
         return true;
       } else {
         return false;
