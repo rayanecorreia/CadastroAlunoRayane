@@ -40,9 +40,8 @@
     .grupo:after {
       content: " ";
       display: table;
+      border: 0;
     }
-
-    border: 0;
 
     .grupo:after {
       clear: both;
@@ -120,36 +119,36 @@
 <body class="bg-light">
 
   CADASTRO DE ALUNO
-  <form action="/index" method="post" name="frm" id="form" onsubmit="return validarCampos()">
+  <form action="/dados" method="post" name="frm" id="form">
     <div class="Principal">
       <fieldset>
         <fieldset class="campo">
           <div class="cnome">
             <label for="nome">Nome</label>
-            <input type="text" id="nome" name="nome" style="width: 10em" required onkeyup="validarNome()">
+            <input type="text" id="nome" name="nome" style="width: 10em" required>
           </div>
           <label id="erroNome"></label>
         </fieldset>
 
         <div class="campo">
           <label for="email">E-mail</label>
-          <input type="text" id="email" name="email" style="width: 20em" required onkeyup="validarEmail()">
+          <input type="text" id="email" name="email" style="width: 20em" required>
         </div>
         <label id="erroEmail"></label>
         <div class="campo">
           <label for="password" name="senha">SENHA </label>
-          <input type="password" name="password" size="10"  id="senha" onclick="validarSenha()">
+          <input type="password" name="senha" size="10" id="senha">
           <label id="erroSenha"></label>
           <label for="confirm_password" >REPETIR SENHA </label>
-          <input type="password" size="10" id="repetirSenha" required onkeyup="validarRepetirSenha()">
+          <input type="password" size="10" id="repetirSenha" required >
           <label id="erroRepetirSenha"></label>
 
         </div>
         <fieldset class="grupo">
 
           <div class="campo">
-            <label for="modulo">MODULO</label>
-            <select>
+            <label for="modulo">MODULO</label >
+            <select name = "modulo">
              
               <option> PRIMEIRO</option>
               
@@ -161,12 +160,12 @@
             
             <br>
             <label>PREFERENCIAS: <br></label>
-            <input type="checkbox" id="RedesDeComputadores" value="PROGRAMAÇÃO WEB" onclick="validarPreferencia()" />
+            <input type="checkbox" id="RedesDeComputadores" value="PROGRAMAÇÃO WEB" name = "preferencia"/>
             REDES DE COMPUTADORES<br />
-            <input type="checkbox" id="Programacao" value="MANUTENÇÃO DE COMPUTADORE" onclick="validarPreferencia()" />
+            <input type="checkbox" id="Programacao" value="MANUTENÇÃO DE COMPUTADORE" name = "preferencia"/>
             PROGRAMAÇÃO<br />
-            <input type="checkbox" id="MontagemEManutencao" value=" REDES DE COMPUTADORES"
-              onclick="validarPreferencia()" /> MONTAGEM E MANUTENÇÃO<br />
+            <input type="checkbox" id="MontagemEManutencao" value=" REDES DE COMPUTADORES" name="preferencia"
+            /> MONTAGEM E MANUTENÇÃO<br />
 
             <label id="erroNaPreferencia"></label>
           </div>
@@ -191,7 +190,7 @@
     }
 
     function validarEmail() {
-      var Email = document.getById("email")
+      var Email = document.getElementById("email")
       if (Email.value == "") {
         alert("campo de email obrigatorio");
         return false;
@@ -208,8 +207,8 @@
     
 
     function validarSenha() {
-      var senha = document.getElementById("Senha");
-      var confirma = document.getElementById("RepetirSenha");
+      var senha = document.getElementById("senha");
+      var confirma = document.getElementById("repetirsenha");
 
       if (senha.value == "") {
         alert("campo de senha obrigatorio");
@@ -243,8 +242,10 @@
     function validarCampos() {
       if (validarNome() && validarEmail() && validarSenha() && validarCampos() && validarPreferencia()) {
         return true;
+        print("Ok")
       } else {
         return false;
+        print("Ok1")
       }
     }
   </script>

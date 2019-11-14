@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-DemoApplication<cadastroalunorayane>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "ifal.edu.br.cadastroalunorayane.DemoApplication",
+            "projectName": "cadastroalunorayane",
+            "args": ""
+        }
+    ]
+}

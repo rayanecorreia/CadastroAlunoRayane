@@ -40,6 +40,7 @@
     .grupo:after {
       content: " ";
       display: table;
+      border: 0;
     }
 
     .grupo:after {
@@ -118,55 +119,59 @@
 <body class="bg-light">
 
   CADASTRO DE ALUNO
-  <form action="/index" method="post" name="frm" id="form" onsubmit="return validarCampos()">
+  <form action="/dados" method="post" name="frm" id="form">
     <div class="Principal">
       <fieldset>
         <fieldset class="campo">
           <div class="cnome">
             <label for="nome">Nome</label>
-            <input type="text" id="nome" name="nome" style="width: 10em" required onkeyup="validarNome()">
+            <input type="text" id="nome" name="nome" style="width: 10em" required>
           </div>
           <label id="erroNome"></label>
         </fieldset>
 
         <div class="campo">
           <label for="email">E-mail</label>
-          <input type="text" id="email" name="email" style="width: 20em" required onkeyup="validarEmail()">
+          <input type="text" id="email" name="email" style="width: 20em" required>
         </div>
         <label id="erroEmail"></label>
         <div class="campo">
-          <label for="password" name="NovaSenha">SENHA </label>
-          <input type="password" name="password" size="10" required id="senha" onkeyup="validarSenha()">
+          <label for="password" name="senha">SENHA </label>
+          <input type="password" name="senha" size="10" id="senha">
           <label id="erroSenha"></label>
-          <label for="confirm_password" name="CNovaSenha">REPETIR SENHA </label>
-          <input type="password" size="10" id="repetirSenha" required onkeyup="validarRepetirSenha()">
+          <label for="confirm_password" >REPETIR SENHA </label>
+          <input type="password" size="10" id="repetirSenha" required >
           <label id="erroRepetirSenha"></label>
 
         </div>
         <fieldset class="grupo">
 
           <div class="campo">
-            <label for="modulo">MODULO</label>
-            <select name="modulo" id="modulo1">
-              <option value="primeiro">PRIMEIRO</option>
-              <option value="segundo">SEGUNDO</option>
-              <option value="terceiro">TERCEIRO</option>
+            <label for="modulo">MODULO</label >
+            <select name = "modulo">
+             
+              <option> PRIMEIRO</option>
+              
+              <option>SEGUNDO</option>
+
+              <option>TERCEIRO</option>
 
             </select>
+            
             <br>
             <label>PREFERENCIAS: <br></label>
-            <input type="checkbox" id="RedesDeComputadores" value="PROGRAMAÇÃO WEB" onclick="validarPreferencia()" />
+            <input type="checkbox" id="RedesDeComputadores" value="PROGRAMAÇÃO WEB" name = "preferencia"/>
             REDES DE COMPUTADORES<br />
-            <input type="checkbox" id="Programacao" value="MANUTENÇÃO DE COMPUTADORE" onclick="validarPreferencia()" />
+            <input type="checkbox" id="Programacao" value="MANUTENÇÃO DE COMPUTADORE" name = "preferencia"/>
             PROGRAMAÇÃO<br />
-            <input type="checkbox" id="MontagemEManutencao" value=" REDES DE COMPUTADORES"
-              onclick="validarPreferencia()" /> MONTAGEM E MANUTENÇÃO<br />
+            <input type="checkbox" id="MontagemEManutencao" value=" REDES DE COMPUTADORES" name="preferencia"
+            /> MONTAGEM E MANUTENÇÃO<br />
 
             <label id="erroNaPreferencia"></label>
           </div>
         </fieldset>
 
-        <input name="Submit" type="submit" class="formobjects" value="Salvar">
+        <input name="Submit" type="submit" class="formobjects" value="Salvar" onclick="validarCampos()">
 
         <input name="Reset" type="reset" class="formobjects" value="Limpar">
       </fieldset>
@@ -175,61 +180,50 @@
   <p th:text="${mensagem}"></p>
 
   <script>
+
     function validarNome() {
       var nome = document.getElementById("nome");
-      var erroNome = document.getElementById("erroNome");
-
-      if (nome.value.length < 3) {
-        erroNome.innerHTML = "esse nome nao e valido";
+      if (nome.value == "") {
+        alert("campo do nome obrigatorio");
         return false;
-      }
-      else {
-        erroNome.innerHTML = "";
-        return true;
       }
     }
 
     function validarEmail() {
-      var email = document.getElementById("email");
-      var erroEmail = document.getElementById("erroEmail");
-
-      if (form.email.value.indexOf("@") == -1 || form.email.value.indexOf(".") == -1) {
-        erroEmail.innerHTML = "esse email nao e valido"
+      var Email = document.getElementById("email")
+      if (Email.value == "") {
+        alert("campo de email obrigatorio");
         return false;
       }
-      else {
-        erroEmail.innerHTML = "";
-        return true;
+       else if (Email.value.indexOf("@") == -1) {
+        alert("email incorreto");
+      }
+      else if (Email.value.indexOf(".") == -1) {
+        alert("email incorreto");
       }
 
 
     }
+    
 
     function validarSenha() {
       var senha = document.getElementById("senha");
-      var erroSenha = document.getElementById("erroSenha");
+      var confirma = document.getElementById("repetirsenha");
 
-      if (senha.value.length <= 6) {
-        erroSenha.innerHTML = "essa senha nao e valida";
+      if (senha.value == "") {
+        alert("campo de senha obrigatorio");
         return false;
-      } else {
-        erroSenha.innerHTML = "";
-        return true;
       }
-    }
-
-    function validarRepetirSenha() {
-      var RepetirSenha = document.getElementById("repetirSenha");
-      var erroRepetirSenha = document.getElementById("erroRepetirSenha");
-      var senha = document.getElementById("senha");
-
-      if (RepetirSenha.value != senha.value) {
-        erroRepetirSenha.innerHTML = "essa senha e diferente da outra";
+      else if (senha.value.length < 6) {
+        alert("A senha deve conter no minímo 6 digitos!");
         return false;
-      } else {
-        erroRepetirSenha.innerHTML = "";
-        return true;
       }
+
+      else if (senha.value!= confirma.value) {
+        alert("senhas diferentes");
+        return false;
+      }
+
     }
 
     function validarPreferencia() {
@@ -246,10 +240,12 @@
       }
     }
     function validarCampos() {
-      if (validarNome() && validarEmail() && validarSenha() && validarRepetirSenha() && validarCampos() && validarPreferencia()) {
+      if (validarNome() && validarEmail() && validarSenha() && validarCampos() && validarPreferencia()) {
         return true;
+        print("Ok")
       } else {
         return false;
+        print("Ok1")
       }
     }
   </script>
